@@ -1,0 +1,29 @@
+.react-flow__handle {
+  opacity: 0;
+}
+
+.label-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  position: relative;
+}
+
+.label-img {
+  width: 30px;
+}
+
+.name-desc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-name {
+  font-size: 8px !important;
+  font-weight: bold;
+}
+
+.label-desc {
+  font-size: 6px;
+}
