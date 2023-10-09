@@ -27,3 +27,19 @@
 .label-desc {
   font-size: 6px;
 }
+
+.react-flow__node-default.selectable.selected {
+  background-color: #FEF8E6;
+  border-color: #f5d359;
+}
+
+.show {
+  width: 250px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+}
+
+.ant-popover-inner {
+  background-color: #FEF8E6 !important;
+}

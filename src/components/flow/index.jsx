@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useMemo, useEffect, useLayoutEffect } from "react";
 import ReactFlow, { Background, Handle, Position, useNodesState, useEdgesState, useReactFlow, ReactFlowProvider, Panel, Controls } from "reactflow";
 import Dagre from '@dagrejs/dagre'
-import { Button, Modal } from 'antd'
-import { WifiOutlined, StarOutlined } from '@ant-design/icons'
+import { Button, Modal, Popover } from 'antd'
+import { WifiOutlined, StarOutlined, StarFilled } from '@ant-design/icons'
 import screen from '../../media/imgs/screen.jpg'
 import exchangeboard from '../../media/imgs/exchangeboard.jpg'
 
@@ -10,19 +10,31 @@ import 'reactflow/dist/style.css'
 import './index.css'
 
 const Label = ({ img, name, desc }) => {
-
-  return (
-    <div className='label-container' >
-      <img src={img} className="label-img"/>
-      <div className="name-desc-container">
-        <div className='label-name'>{name}</div>
-        <div className='label-desc'>{desc}</div>
-      </div>
-      <div style={{ display: 'flex' }}>
-        <WifiOutlined style={{ color: '#00D899' }} />
-        <StarOutlined style={{ marginLeft: 4, color: '#00D899' }} />
-      </div>
+  let content = (<div className='show' >
+    <img src={img} style={{ width: 80 }} />
+    <div style={{ marginLeft: 20 }}>
+      <div>{name} <StarFilled style={{ marginLeft: 10, color: '#fc9434' }} /></div>
+      <div>Mac地址：097897</div>
+      <div>IP地址：192.168.1.1</div>
     </div>
+  </div>);
+  return (
+    <Popover content={content} placement="topLeft">
+      <div className='label-container' >
+        <img src={img} className="label-img" />
+        <div className="name-desc-container">
+          <div className='label-name'>{name}</div>
+          <div className='label-desc'>{desc}</div>
+        </div>
+        <div style={{ display: 'flex' }}>
+          {name === 'cp3' && <WifiOutlined style={{ color: '#cf4036' }} />}
+          {name === 'cp3' && <StarFilled style={{ marginLeft: 4, color: '#fc9434' }} />}
+          {name !== 'cp3' && <WifiOutlined style={{ color: '#00D899' }} />}
+          {name !== 'cp3' && <StarOutlined style={{ marginLeft: 4, color: '#00D899' }} />}
+        </div>
+      </div>
+    </Popover>
+
   )
 }
 
@@ -54,7 +66,7 @@ const initialNodes = [
   { id: '4', data: { label: <Label img={exchangeboard} name='左摄像头' desc='B8 系列' /> }, position: { x: 250, y: 120 }, targetPosition: 'left', style: { width: 180 } },
   { id: '5', data: { label: <Label img={exchangeboard} name='右摄像头' desc='B8 系列' /> }, position: { x: 250, y: 180 }, targetPosition: 'left', style: { width: 180 } },
   { id: '6', data: { label: <Label img={exchangeboard} name='时序电源' desc='FUN' /> }, position: { x: 250, y: 240 }, targetPosition: 'left', style: { width: 180 } },
-  { id: '7', data: { label: <Label img={exchangeboard} name='cp3' desc='CRE' /> }, position: { x: 250, y: 300 },  targetPosition: 'left', sourcePosition: 'right', style: { width: 180 } },
+  { id: '7', data: { label: <Label img={exchangeboard} name='cp3' desc='CRE' /> }, position: { x: 250, y: 300 }, targetPosition: 'left', sourcePosition: 'right', style: { width: 180 } },
   { id: '8', data: { label: <Label img={exchangeboard} name='音频处理器' desc='SPR' /> }, position: { x: 250, y: 360 }, targetPosition: 'left', style: { width: 180 } },
   { id: '9', data: { label: <Label img={exchangeboard} name='空调2' desc='DOKIN' /> }, position: { x: 250, y: 420 }, targetPosition: 'left', style: { width: 180 } },
   { id: '10', data: { label: <Label img={exchangeboard} name='空调1' desc='DOKIN' /> }, position: { x: 250, y: 480 }, targetPosition: 'left', style: { width: 180 } },
@@ -99,7 +111,7 @@ const LayoutFlow = () => {
       fitView
       // nodeTypes={nodeTypes}
       attributionPosition="bottom-left"
-      defaultEdgeOptions={{ type: 'step', markerEnd: { type: 'arrowclosed' }}}
+      defaultEdgeOptions={{ type: 'step', markerEnd: { type: 'arrowclosed' } }}
     >
       <Background />
       <Controls />
