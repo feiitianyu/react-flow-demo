@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-flow-demo/static/css/main.f6a4be50.css",
+    "main.js": "/react-flow-demo/static/js/main.736a65a8.js",
+    "static/media/exchangeboard.jpg": "/react-flow-demo/static/media/exchangeboard.8acceccf85e8a656ff12.jpg",
+    "index.html": "/react-flow-demo/index.html",
+    "main.f6a4be50.css.map": "/react-flow-demo/static/css/main.f6a4be50.css.map",
+    "main.736a65a8.js.map": "/react-flow-demo/static/js/main.736a65a8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f6a4be50.css",
+    "static/js/main.736a65a8.js"
+  ]
+}
